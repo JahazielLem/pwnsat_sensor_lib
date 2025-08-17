@@ -11,7 +11,6 @@
 #include <stdint.h>
 
 static uint8_t slave_address = 0x00;
-static uint8_t initialized = 0;
 static int ret = 0;
 
 int i2c_tools_init(void) {

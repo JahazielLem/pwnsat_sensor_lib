@@ -1,5 +1,5 @@
+#include "mpu6050.h"
 #include <math.h>
-#include <mpu6050.h>
 #include <stdint.h>
 #include <stdio.h>
 
@@ -15,21 +15,27 @@ static uint8_t slave_addr = 0x0;
 #define BIT7 (1 << 7) // 0x80
 
 void mpu6050_get_raw_gyro(mpu6050_raw_gyro_value_t *raw_gyro_value) {
-  uint8_t buffer[6] = {0};
+  char buffer[6] = {0};
   i2c_tools_read_reg(MPU6050_GYRO_XOUT_H, buffer, 6);
 
-  raw_gyro_value->raw_gyro_x = (int16_t)((buffer[0] << 8) + (buffer[1]));
-  raw_gyro_value->raw_gyro_y = (int16_t)((buffer[2] << 8) + (buffer[3]));
-  raw_gyro_value->raw_gyro_z = (int16_t)((buffer[4] << 8) + (buffer[5]));
+  raw_gyro_value->raw_gyro_x =
+      (int16_t)(((uint8_t)buffer[0] << 8) + ((uint8_t)buffer[1]));
+  raw_gyro_value->raw_gyro_y =
+      (int16_t)(((uint8_t)buffer[2] << 8) + ((uint8_t)buffer[3]));
+  raw_gyro_value->raw_gyro_z =
+      (int16_t)(((uint8_t)buffer[4] << 8) + ((uint8_t)buffer[5]));
 }
 
 void mpu6050_get_raw_acce(mpu6050_raw_acce_value_t *raw_acce_value) {
-  uint8_t buffer[6] = {0};
+  char buffer[6] = {0};
   i2c_tools_read_reg(MPU6050_ACCEL_XOUT_H, buffer, 6);
 
-  raw_acce_value->raw_acce_x = (int16_t)((buffer[0] << 8) + (buffer[1]));
-  raw_acce_value->raw_acce_y = (int16_t)((buffer[2] << 8) + (buffer[3]));
-  raw_acce_value->raw_acce_z = (int16_t)((buffer[4] << 8) + (buffer[5]));
+  raw_acce_value->raw_acce_x =
+      (int16_t)(((uint8_t)buffer[0] << 8) + ((uint8_t)buffer[1]));
+  raw_acce_value->raw_acce_y =
+      (int16_t)(((uint8_t)buffer[2] << 8) + ((uint8_t)buffer[3]));
+  raw_acce_value->raw_acce_z =
+      (int16_t)(((uint8_t)buffer[4] << 8) + ((uint8_t)buffer[5]));
 }
 
 float mpu6050_get_acce_sensitivity(void) {
@@ -89,6 +95,7 @@ int mpu6050_get_gyro(mpu6050_gyro_value_t *gyro_value) {
   gyro_value->gyro_x = raw_gyro.raw_gyro_x / gyro_sensitivity;
   gyro_value->gyro_y = raw_gyro.raw_gyro_y / gyro_sensitivity;
   gyro_value->gyro_z = raw_gyro.raw_gyro_z / gyro_sensitivity;
+  return 0;
 }
 
 int mpu6050_get_acce(mpu6050_acce_value_t *acce_value) {
@@ -100,6 +107,7 @@ int mpu6050_get_acce(mpu6050_acce_value_t *acce_value) {
   acce_value->acce_x = raw_acce.raw_acce_x / acce_sensitivity;
   acce_value->acce_y = raw_acce.raw_acce_y / acce_sensitivity;
   acce_value->acce_z = raw_acce.raw_acce_z / acce_sensitivity;
+  return 0;
 }
 
 int mpu6050_set_gyro_fs(mpu6050_gyro_range_t gyro_fs) {

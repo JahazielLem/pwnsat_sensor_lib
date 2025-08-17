@@ -18,7 +18,7 @@
 extern "C" {
 #endif
 
-#include <i2c_tools.h>
+#include "i2c_tools.h"
 
 /** @brief Default I2C address for BME280 */
 #define BME280_ADDRESS (0x77)
@@ -92,46 +92,46 @@ typedef struct {
  * @brief Sampling rates for sensor measurements
  */
 enum sensor_sampling {
-  SAMPLING_NONE = 0b000, /**< No sampling */
-  SAMPLING_X1 = 0b001,   /**< 1x sampling */
-  SAMPLING_X2 = 0b010,   /**< 2x sampling */
-  SAMPLING_X4 = 0b011,   /**< 4x sampling */
-  SAMPLING_X8 = 0b100,   /**< 8x sampling */
-  SAMPLING_X16 = 0b101   /**< 16x sampling */
+  SAMPLING_NONE = 0, /**< No sampling */
+  SAMPLING_X1 = 1,   /**< 1x sampling */
+  SAMPLING_X2 = 2,   /**< 2x sampling */
+  SAMPLING_X4 = 3,   /**< 4x sampling */
+  SAMPLING_X8 = 4,   /**< 8x sampling */
+  SAMPLING_X16 = 5   /**< 16x sampling */
 };
 
 /**
  * @brief Power modes for the BME280
  */
 enum sensor_mode {
-  MODE_SLEEP = 0b00,  /**< Sleep mode */
-  MODE_FORCED = 0b01, /**< Forced mode */
-  MODE_NORMAL = 0b11  /**< Normal mode */
+  MODE_SLEEP = 0,  /**< Sleep mode */
+  MODE_FORCED = 1, /**< Forced mode */
+  MODE_NORMAL = 2  /**< Normal mode */
 };
 
 /**
  * @brief Filter settings for the BME280
  */
 enum sensor_filter {
-  FILTER_OFF = 0b000, /**< Filter off */
-  FILTER_X2 = 0b001,  /**< 2x filter */
-  FILTER_X4 = 0b010,  /**< 4x filter */
-  FILTER_X8 = 0b011,  /**< 8x filter */
-  FILTER_X16 = 0b100  /**< 16x filter */
+  FILTER_OFF = 0, /**< Filter off */
+  FILTER_X2 = 1,  /**< 2x filter */
+  FILTER_X4 = 2,  /**< 4x filter */
+  FILTER_X8 = 3,  /**< 8x filter */
+  FILTER_X16 = 4  /**< 16x filter */
 };
 
 /**
  * @brief Standby duration in normal mode (ms)
  */
 enum standby_duration {
-  STANDBY_MS_0_5 = 0b000,  /**< 0.5 ms */
-  STANDBY_MS_10 = 0b110,   /**< 10 ms */
-  STANDBY_MS_20 = 0b111,   /**< 20 ms */
-  STANDBY_MS_62_5 = 0b001, /**< 62.5 ms */
-  STANDBY_MS_125 = 0b010,  /**< 125 ms */
-  STANDBY_MS_250 = 0b011,  /**< 250 ms */
-  STANDBY_MS_500 = 0b100,  /**< 500 ms */
-  STANDBY_MS_1000 = 0b101  /**< 1000 ms */
+  STANDBY_MS_0_5 = 0,  /**< 0.5 ms */
+  STANDBY_MS_10 = 6,   /**< 10 ms */
+  STANDBY_MS_20 = 7,   /**< 20 ms */
+  STANDBY_MS_62_5 = 1, /**< 62.5 ms */
+  STANDBY_MS_125 = 2,  /**< 125 ms */
+  STANDBY_MS_250 = 3,  /**< 250 ms */
+  STANDBY_MS_500 = 4,  /**< 500 ms */
+  STANDBY_MS_1000 = 5  /**< 1000 ms */
 };
 
 /**

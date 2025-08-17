@@ -13,7 +13,7 @@
 extern "C" {
 #endif
 
-#include <i2c_tools.h>
+#include "i2c_tools.h"
 
 /** @brief Default I2C address for MPU6050 */
 #define MPU6050_ADDRESS (0x68) ///< MPU6050 default i2c address w/ AD0 high
@@ -141,10 +141,10 @@ typedef enum clock_select {
  * Allowed values for `setAccelerometerRange`.
  */
 typedef enum {
-  MPU6050_RANGE_2_G = 0b00,  ///< +/- 2g (default value)
-  MPU6050_RANGE_4_G = 0b01,  ///< +/- 4g
-  MPU6050_RANGE_8_G = 0b10,  ///< +/- 8g
-  MPU6050_RANGE_16_G = 0b11, ///< +/- 16g
+  MPU6050_RANGE_2_G = 0,  ///< +/- 2g (default value)
+  MPU6050_RANGE_4_G = 1,  ///< +/- 4g
+  MPU6050_RANGE_8_G = 2,  ///< +/- 8g
+  MPU6050_RANGE_16_G = 3, ///< +/- 16g
 } mpu6050_accel_range_t;
 
 /**
